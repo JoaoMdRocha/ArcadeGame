@@ -7,12 +7,10 @@ var Enemy = function() {
     // a helper we've provided to easily load images
 
 
-     //----initial position needs to be randomised  but within the vertical limits of the board- never on the water
-     //---- 40 - 130 - 220
-     // ---- x minus than 0.
     const verticalPlacement = [40, 130, 220];
     this.x= 0 - Math.floor(Math.random() * 3000);
     this.y= verticalPlacement[Math.floor(Math.random() * 3)];
+    this.initspeed = 100 + Math.floor(Math.random() * 200)
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -20,12 +18,13 @@ var Enemy = function() {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
 
-      this.x += 200*dt;
-      // console.log(enemy.x);
+
+         this.x += this.initspeed *dt;
+
 
       allEnemies.forEach(function print(element){
 
-         if(((element.x > player.x -10) && (element.x < player.x + 10)) && ((element.y > player.y -10) && (element.y < player.y + 10)) ){
+         if(((element.x > player.x -20) && (element.x < player.x + 20)) && ((element.y > player.y -20) && (element.y < player.y + 20)) ){
 
           player.x = 200;
           player.y = 400;
